@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #3b3bdb; /* Background color */
+    margin: 0; /* Remove default margin */
+}
+
+.card-container {
+    display: flex; /* Enable flexbox layout */
+    gap: 20px; /* Space between cards */
+}
+
+.card {
+    position: relative;
+    width: 200px; /* Set a fixed width for each card */
+    height: 300px; /* Set a fixed height for each card */
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: rotateX(30deg); /* Tilt effect on hover */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Shadow for depth */
+}
+
+.front, .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    backface-visibility: hidden; /* Prevent image bleed-through */
+}
+
+.front {
+    transition: filter 0.6s ease-in-out; /* Smooth blur transition */
+}
+
+.back {
+    opacity: 0; /* Start with image2 hidden */
+    transform: translateY(0); /* Start with no upward movement */
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out; /* Smooth transition */
+}
+
+.card:hover .front {
+    filter: blur(1px); /* Blur front image on hover */
+}
+
+.card:hover .back {
+    opacity: 1; /* Show back image on hover */
+    transform: translateY(-70px); /* Float upwards */
+}
